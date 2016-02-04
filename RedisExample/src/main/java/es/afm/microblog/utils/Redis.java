@@ -139,7 +139,7 @@ public class Redis {
 
 	/**
 	 * Un usuario sigue a otro. Actualiza los set de seguidos y seguidores
-	 * (followings y followers)
+	 * (followed y followers)
 	 * 
 	 * @param currentUser
 	 *            el userId del usuario en sesión
@@ -147,7 +147,7 @@ public class Redis {
 	 *            el userId del usuario a seguir
 	 */
 	public void follow(String currentUser, String userId) {
-		jedis.zadd("followings:" + currentUser, new Date().getTime(), userId);
+		jedis.zadd("followed:" + currentUser, new Date().getTime(), userId);
 		jedis.zadd("followers:" + userId, new Date().getTime(), currentUser);
 	}
 
